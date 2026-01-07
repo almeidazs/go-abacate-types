@@ -40,15 +40,19 @@ type APICoupon struct {
 	Metadata map[string]any `json:"metadata,omitempty"`
 }
 
+// https://docs.abacatepay.com/pages/coupon/reference#discountkind
 type CouponDiscountKind string
 
+// https://docs.abacatepay.com/pages/coupon/reference#discountkind
 const (
 	CouponDiscountKindFixed      CouponDiscountKind = "FIXED"
 	CouponDiscountKindPercentage CouponDiscountKind = "PERCENTAGE"
 )
 
+// https://docs.abacatepay.com/pages/coupon/reference#status
 type CouponStatus string
 
+// https://docs.abacatepay.com/pages/coupon/reference#status
 const (
 	CouponStatusActive   CouponStatus = "ACTIVE"
 	CouponStatusDeleted  CouponStatus = "DELETED"

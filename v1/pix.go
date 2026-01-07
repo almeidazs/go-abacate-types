@@ -1,6 +1,6 @@
 package v1
 
-// ADD HERE LATER
+// https://docs.abacatepay.com/pages/pix-qrcode/reference#estrutura
 type APIQRCodePIX struct {
 	// Unique billing identifier.
 	ID string `json:"id"`
@@ -39,6 +39,7 @@ type APIQRCodePIX struct {
 	ExpiresAt string `json:"expiresAt"`
 }
 
+// // https://docs.abacatepay.com/pages/payment/reference#atributos
 type PaymentStatus string
 
 // https://docs.abacatepay.com/pages/payment/reference#atributos

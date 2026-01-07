@@ -14,6 +14,7 @@ type APIStore struct {
 	Balance APIStoreBalance `json:"balance"`
 }
 
+// https://docs.abacatepay.com/pages/store/reference#balance
 type APIStoreBalance struct {
 	// Balance available for withdrawal in cents.
 	Available int `json:"available"`

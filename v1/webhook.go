@@ -1,7 +1,9 @@
 package v1
 
+// https://docs.abacatepay.com/pages/webhooks#eventos-suportados
 type WebhookEventType string
 
+// https://docs.abacatepay.com/pages/webhooks#eventos-suportados
 const (
 	WebhookEventWithdrawFailed WebhookEventType = "withdraw.failed"
 	WebhookEventWithdrawDone   WebhookEventType = "withdraw.done"

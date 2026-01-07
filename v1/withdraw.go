@@ -33,6 +33,7 @@ type APIWithdraw struct {
 // https://docs.abacatepay.com/pages/withdraw/reference#atributos
 type WithdrawStatus string
 
+// https://docs.abacatepay.com/pages/withdraw/reference#atributos
 const (
 	WithdrawStatusPending   WithdrawStatus = "PENDING"
 	WithdrawStatusExpired   WithdrawStatus = "EXPIRED"

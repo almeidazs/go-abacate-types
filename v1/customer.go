@@ -9,6 +9,7 @@ type APICustomer struct {
 	Metadata APICustomerMetadata `json:"metadata"`
 }
 
+// https://docs.abacatepay.com/pages/client/reference#metadados
 type APICustomerMetadata struct {
 	// Customer's full name.
 	Name string `json:"name"`

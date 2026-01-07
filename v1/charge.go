@@ -45,6 +45,7 @@ type APICharge struct {
 	UpdatedAt string `json:"updatedAt"`
 }
 
+// https://docs.abacatepay.com/pages/payment/reference#metadata
 type APIChargeMetadata struct {
 	// Fee applied by AbacatePay.
 	Fee int `json:"fee"`
@@ -56,20 +57,25 @@ type APIChargeMetadata struct {
 	CompletionURL string `json:"completionUrl"`
 }
 
+// https://docs.abacatepay.com/pages/payment/reference#methods
 type PaymentMethod string
 
+// https://docs.abacatepay.com/pages/payment/reference#methods
 const (
 	PaymentMethodPix  PaymentMethod = "PIX"
 	PaymentMethodCard PaymentMethod = "CARD"
 )
 
+// https://docs.abacatepay.com/pages/payment/reference#frequency
 type PaymentFrequency string
 
+// https://docs.abacatepay.com/pages/payment/reference#frequency
 const (
 	PaymentFrequencyOneTime          PaymentFrequency = "ONE_TIME"
 	PaymentFrequencyMultiplePayments PaymentFrequency = "MULTIPLE_PAYMENTS"
 )
 
+// https://docs.abacatepay.com/pages/payment/reference#products
 type APIProduct struct {
 	// The product id on your system. We use this id to create your product on AbacatePay automatically, so make sure your id is unique.
 	ExternalID string `json:"externalId"`
