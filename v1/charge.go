@@ -30,10 +30,10 @@ type APICharge struct {
 	Metadata APIChargeMetadata `json:"metadata"`
 
 	// Date and time of next charge, or null for one-time charges.
-	NextBilling *string `json:"nextBilling"`
+	NextBilling *string `json:"nextBilling,omitempty"`
 
 	// Whether or not to allow coupons for billing.
-	AllowCoupons *bool `json:"allowCoupons"`
+	AllowCoupons *bool `json:"allowCoupons,omitempty"`
 
 	// Coupons allowed in billing. Coupons are only considered if "AllowCoupons" is true.
 	Coupons []APICoupon `json:"coupons"`

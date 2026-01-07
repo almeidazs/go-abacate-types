@@ -2,10 +2,10 @@ package v1
 
 type APIResponse[D any] struct {
 	/// The data of the response.
-	Data *D `json:"data"`
+	Data *D `json:"data,omitempty"`
 
 	// Error message returned from the API.
-	Error *string `json:"error"`
+	Error *string `json:"error,omitempty"`
 }
 
 // Checks whether the response of the API is an error or not
