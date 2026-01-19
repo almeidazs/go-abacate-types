@@ -66,19 +66,19 @@ type APIResponseWithCursorBasedPaginationData struct {
 // https://api.abacatepay.com/v2/customers/create
 type RESTPostCreateCustomerBody struct {
 	// Customer's full name.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// Customer's email.
 	Email string `json:"email"`
 
 	// Customer's CPF or CNPJ.
-	TaxID *string `json:"taxId"`
+	TaxID *string `json:"taxId,omitempty"`
 
 	// Customer's cell phone.
-	Cellphone *string `json:"cellphone"`
+	Cellphone *string `json:"cellphone,omitempty"`
 
 	// Customer zip code.
-	ZipCode *string `json:"zipCode"`
+	ZipCode *string `json:"zipCode,omitempty"`
 
 	// Additional customer metadata.
 	Metadata map[string]any `json:"metadata,omitempty"`
@@ -90,33 +90,33 @@ type RESTPostCreateCustomerData APICustomer
 // https://api.abacatepay.com/v2/checkouts/create
 type RESTPostCreateNewCheckoutBody struct {
 	// Payment method that will be used.
-	Methods *PaymentMethod
+	Methods *PaymentMethod `json:"methods,omitempty"`
 
 	// URL to redirect the customer if they click on the "Back" option.
-	ReturnURL *string
+	ReturnURL *string `json:"returnUrl,omitempty"`
 
 	// URL to redirect the customer when payment is completed.
-	CompletionURL *string
+	CompletionURL *string `json:"completionUrl,omitempty"`
 
 	// The ID of a customer already registered in your store.
-	CustomerID *string
+	CustomerID *string `json:"customerId,omitempty"`
 
 	// Your customer's data to create it.
 	// The customer object is not mandatory, but when entering any `customer` information, all `name`, `cellphone`, `email` and `taxId` fields are mandatory.
-	Customer *APIBaseCustomer
+	Customer *APIBaseCustomer `json:"customer,omitempty"`
 
 	// List of coupons available for resem used with billing (0-50 max.).
-	Coupons *[]string
+	Coupons *[]string `json:"coupons,omitempty"`
 
 	// If you have a unique identifier for your billing application, completely optional.
-	ExternalID *string
+	ExternalID *string `json:"externalId,omitempty"`
 
 	// Optional billing metadata.
-	Metadata *map[string]any
+	Metadata map[string]any `json:"metadata,omitempty"`
 
 	// List of items included in the charge.
 	// This is the only required field — the total value is calculated from these items.
-	Items APIItem
+	Items []APIItem `json:"items"`
 }
 
 // https://api.abacatepay.com/v2/checkouts/create
@@ -125,20 +125,20 @@ type RESTPostCreateNewCheckoutData APICheckout
 // https://api.abacatepay.com/v2/transparents/create
 type RESTPostCreateQRCodePixBody struct {
 	// Charge amount in cents.
-	Amount uint64
+	Amount uint64 `json:"amount"`
 
 	// Billing expiration time in seconds.
-	ExpiresIn *uint64
+	ExpiresIn *uint64 `json:"expiresIn,omitempty"`
 
 	// Message that will appear when paying the PIX.
-	Description *string
+	Description *string `json:"description,omitempty"`
 
 	// Your customer's data to create it.
 	// The customer object is not mandatory, but when entering any `customer` information, all `name`, `cellphone`, `email` and `taxId` fields are mandatory.
-	Customer *APIBaseCustomer
+	Customer *APIBaseCustomer `json:"customer,omitempty"`
 
 	// Optional billing metadata.
-	Metadata *map[string]any
+	Metadata map[string]any `json:"metadata,omitempty"`
 }
 
 // https://api.abacatepay.com/v2/transparents/create
@@ -147,13 +147,13 @@ type RESTPostCreateQRCodePixData APIQRCodePIX
 // https://api.abacatepay.com/v2/transparents/simulate-payment
 type RESTPostSimulateQRCodePixPaymentQueryParams struct {
 	// QRCode Pix ID.
-	ID string
+	ID string `json:"id"`
 }
 
 // https://api.abacatepay.com/v2/transparents/simulate-payment
 type RESTPostSimulateQRCodePixPaymentBody struct {
 	// Optional metadata for the request.
-	Metadata map[string]any
+	Metadata map[string]any `json:"metadata"`
 }
 
 // https://api.abacatepay.com/v2/transparents/simulate-payment
@@ -162,16 +162,16 @@ type RESTPostSimulateQRCodePixPaymentData APIQRCodePIX
 // https://api.abacatepay.com/v2/pixQrCode/check
 type RESTGetCheckQRCodePixStatusQueryParams struct {
 	// QRCode Pix ID.
-	ID string
+	ID string `json:"id"`
 }
 
 // https://api.abacatepay.com/v2/transparents/check
 type RESTGetCheckQRCodePixStatusData struct {
 	//QRCode Pix expiration date.
-	ExpiresAt time.Time
+	ExpiresAt time.Time `json:"expiresAt"`
 
 	// Information about the progress of QRCode Pix.
-	Status PaymentStatus
+	Status PaymentStatus `json:"status"`
 }
 
 // https://api.abacatepay.com/v2/checkouts/list
@@ -183,7 +183,7 @@ type RESTGetCheckoutData APICheckout
 // https://api.abacatepay.com/v2/checkouts/get
 type RESTGetCheckoutQueryParams struct {
 	// Unique billing identifier.
-	ID string
+	ID string `json:"id"`
 }
 
 // https://api.abacatepay.com/v2/customers/list
@@ -192,16 +192,16 @@ type RESTGetListCustomersData []APICustomer
 // https://api.abacatepay.com/v2/customers/list
 type RESTGetListCustomersQueryParams struct {
 	// Number of the page.
-	Page *uint64
+	Page *uint64 `json:"page,omitempty"`
 
 	// Number of items per page.
-	Limit *uint64
+	Limit *uint64 `json:"limit,omitempty"`
 }
 
 // https://api.abacatepay.com/v2/customers/get
 type RESTGetCustomerQueryParams struct {
 	// The ID of the customer.
-	ID string
+	ID string `json:"id"`
 }
 
 // https://api.abacatepay.com/v2/customers/get
@@ -231,7 +231,7 @@ type RESTGetCustomerData struct {
 // https://api.abacatepay.com/v2/customers/delete
 type RESTDeleteCustomerBody struct {
 	// Unique public identifier of the customer to be deleted.
-	ID string
+	ID string `json:"id"`
 }
 
 // https://api.abacatepay.com/v2/customers/delete
@@ -261,22 +261,22 @@ type RESTDeleteCustomerData struct {
 // https://api.abacatepay.com/v2/coupons/create
 type RESTPostCreateCouponBody struct {
 	// Unique coupon identifier.
-	Code string
+	Code string `json:"code"`
 
 	// Discount amount to be applied.
-	Discount uint64
+	Discount uint64 `json:"discount"`
 
 	// Type of discount applied, percentage or fixed.
-	DiscountKind CouponDiscountKind
+	DiscountKind CouponDiscountKind `json:"discountKind"`
 
 	// Coupon description.
-	Notes *string
+	Notes *string `json:"notes,omitempty"`
 
 	// Number of times the coupon can be redeemed. -1 means this coupon can be redeemed without limits.
-	MaxRedeems *uint64
+	MaxRedeems *uint64 `json:"maxRedeems"`
 
 	// Key value object for coupon metadata.
-	Metadata map[string]any
+	Metadata map[string]any `json:"metadata,omitempty"`
 }
 
 // https://api.abacatepay.com/v2/coupon/create
@@ -285,13 +285,13 @@ type RESTPostCreateCouponData APICoupon
 // https://api.abacatepay.com/v2/payouts/create
 type RESTPostCreateNewPayoutBody struct {
 	// Unique identifier of the payout in your system.
-	ExternalID string
+	ExternalID string `json:"externalId"`
 
 	// Payout value in cents (Min 350).
-	Amount uint64
+	Amount uint64 `json:"amount"`
 
 	// Optional payout description.
-	Description *string
+	Description *string `json:"description,omitempty"`
 }
 
 // https://api.abacatepay.com/v2/payouts/create
@@ -300,7 +300,7 @@ type RESTPostCreateNewWPayoutData APIPayout
 // https://api.abacatepay.com/v2/payouts/get
 type RESTGetSearchPayoutQueryParams struct {
 	// Unique payout identifier in your system.
-	ExternalID string
+	ExternalID string `json:"externalId"`
 }
 
 // https://api.abacatepay.com/v2/payouts/get
@@ -309,58 +309,58 @@ type RESTGetSearchPayoutData APIPayout
 // https://api.abacatepay.com/v2/payouts/list
 type RESTGetListPayoutsQueryParams struct {
 	// Number of the page.
-	Page *uint64
+	Page *uint64 `json:"page,omitempty"`
 
 	// Number of items per page.
-	Limit *uint64
+	Limit *uint64 `json:"limit,omitempty"`
 }
 
 // https://api.abacatepay.com/v2/public-mrr/revenue
 type RESTGetRevenueByPeriodQueryParams struct {
 	// Period start date (YYYY-MM-DD format).
-	StartDate time.Time
+	StartDate time.Time `json:"startDate"`
 
 	// Period end date (YYYY-MM-DD format).
-	EndDate time.Time
+	EndDate time.Time `json:"endDate"`
 }
 
 // https://api.abacatepay.com/v2/public-mrr/revenue
 type RESTGetRevenueByPeriodData struct {
 	// Total revenue for the period in cents.
-	TotalRevenue uint64
+	TotalRevenue uint64 `json:"totalRevenue"`
 
 	// Total transactions in the period.
-	TotalTransactions uint64
+	TotalTransactions uint64 `json:"totalTransactions"`
 
 	// Object with transactions grouped by day (key is the date in YYYY-MM-DD format).
 	TransactionsPerDay map[string]struct {
 		// Total value of the day's transactions in cents.
-		Amount uint64
+		Amount uint64 `json:"amount"`
 
 		// Number of transactions for the day.
-		Count uint64
-	}
+		Count uint64 `json:"count"`
+	} `json:"transactionsPerDay"`
 }
 
 // https://api.abacatepay.com/v2/public-mrr/merchant-info
 type RESTGetMerchantData struct {
 	// Store name.
-	Name string
+	Name string `json:"name"`
 
 	// Store website.
-	Website string
+	Website string `json:"website"`
 
 	// Store creation date.
-	CreatedAt string
+	CreatedAt string `json:"createdAt"`
 }
 
 // https://api.abacatepay.com/v2/public-mrr/mrr
 type RESTGetMRRData struct {
 	// Monthly recurring revenue in cents. Value 0 indicates that there is no recurring revenue at the moment.
-	MRR uint64
+	MRR uint64 `json:"mrr"`
 
 	// Total active subscriptions. Value 0 indicates that there are no currently active subscriptions.
-	TotalActiveSubscriptions uint64
+	TotalActiveSubscriptions uint64 `json:"totalActiveSubscriptions"`
 }
 
 // https://api.abacatepay.com/v2/store/get
@@ -375,16 +375,16 @@ type RESTGetListCouponsData []APICoupon
 // https://api.abacatepay.com/v2/coupons/list
 type RESTGetListCouponsQueryParams struct {
 	// Page number.
-	Page *uint64
+	Page *uint64 `json:"page"`
 
 	// Number of items per page.
-	Limit *uint64
+	Limit *uint64 `json:"limit"`
 }
 
 // https://api.abacatepay.com/v2/coupons/get
 type RESTGetCouponQueryParams struct {
 	// The ID of the coupon.
-	ID string
+	ID string `json:"id"`
 }
 
 // https://api.abacatepay.com/v2/coupons/get
@@ -393,7 +393,7 @@ type RESTGetCouponData APICoupon
 // https://api.abacatepay.com/v2/coupons/delete
 type RESTDeleteCouponBody struct {
 	// The ID of the coupon.
-	ID string
+	ID string `json:"id"`
 }
 
 // https://api.abacatepay.com/v2/coupons/delete
@@ -402,7 +402,7 @@ type RESTDeleteCouponData APICoupon
 // https://api.abacatepay.com/v2/coupons/toggle
 type RESTPatchToggleCouponStatusBody struct {
 	// The ID of the coupon.
-	ID string
+	ID string `json:"id"`
 }
 
 // https://api.abacatepay.com/v2/coupons/toggle
@@ -411,7 +411,7 @@ type RESTPatchToggleCouponStatusData APICoupon
 // https://api.abacatepay.com/v2/products/create
 type RESTPostCreateProductBody struct {
 	// Description for the product.
-	Description *string
+	Description *string `json:"description,omitempty"`
 
 	// Product name.
 	Name string `json:"name"`
@@ -432,10 +432,10 @@ type RESTPostCreateProductData APIProduct
 // https://api.abacatepay.com/v2/products/list
 type RESTGetListProductsQueryParams struct {
 	// Page number.
-	Page *uint64
+	Page *uint64 `json:"page,omitempty"`
 
 	// Limit of products to return.
-	Limit *uint64
+	Limit *uint64 `json:"limit,omitempty"`
 }
 
 // https://api.abacatepay.com/v2/products/list
@@ -444,10 +444,10 @@ type RESTGetListProductsData []APIProduct
 // https://api.abacatepay.com/v2/products/get
 type RESTGetProductQueryParams struct {
 	// The product ID.
-	ID *string
+	ID *string `json:"id,omitempty"`
 
 	// External ID of the product.
-	ExternalId *string
+	ExternalId *string `json:"externalId,omitempty"`
 }
 
 // https://api.abacatepay.com/v2/products/get
@@ -468,7 +468,7 @@ type RESTPostCreateSubscriptionBody struct {
 	RetryPolicy APISubscriptionRetryPolicy `json:"retryPolicy"`
 
 	// Subscription description.
-	Description *string
+	Description *string `json:"description,omitempty"`
 
 	// The subscription value in cents.
 	Amount uint64 `json:"amount"`
@@ -489,9 +489,10 @@ type RESTPostCreateSubscriptionData APISubscription
 // https://api.abacatepay.com/v2/subscriptions/list
 type RESTGetListSubscriptionsQueryParams struct {
 	// Cursor for the pagination.
-	Cursor *string
+	Cursor *string `json:"cursor,omitempty"`
+
 	// Number of items per page.
-	Limit *uint64
+	Limit *uint64 `json:"limit,omitempty"`
 }
 
 // https://api.abacatepay.com/v2/subscriptions/list
