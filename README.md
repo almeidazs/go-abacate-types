@@ -9,7 +9,7 @@ Tipagens oficiais e helpers modernos para integrar com a API da AbacatePay.
 ## Instalação
 
 ```bash
-go get github.com/almeidazs/go-abacate-types@latest
+go get github.com/AbacatePay/go-types@latest
 ```
 
 ## Como a AbacatePay API Types documenta
@@ -19,7 +19,7 @@ Antes de tudo, você deve específicar a versão da API que você deseja importa
 </div>
 
 ```go
-import "github.com/almeidazs/go-abacate-types/v2"
+import "github.com/AbacatePay/go-types/v2"
 ```
 
 - Prefixo `API*`
@@ -59,7 +59,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	types "github.com/almeidazs/go-abacate-types/v2"
+	types "github.com/AbacatePay/go-types/v2"
 )
 
 func CreateCoupon(body types.RESTPostCreateCouponBody) (*types.APICoupon, error) {
@@ -102,7 +102,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	types "github.com/almeidazs/go-abacate-types/v2"
+	types "github.com/AbacatePay/go-types/v2"
 )
 
 func webhookHandler(w http.ResponseWriter, r *http.Request) {
