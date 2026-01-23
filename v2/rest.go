@@ -85,7 +85,7 @@ type RESTPostCreateCustomerBody struct {
 }
 
 // https://api.abacatepay.com/v2/customers/create
-type RESTPostCreateCustomerData APICustomer
+type RESTPostCreateCustomerData APIResponse[APICustomer]
 
 // https://api.abacatepay.com/v2/checkouts/create
 type RESTPostCreateNewCheckoutBody struct {
@@ -120,7 +120,7 @@ type RESTPostCreateNewCheckoutBody struct {
 }
 
 // https://api.abacatepay.com/v2/checkouts/create
-type RESTPostCreateNewCheckoutData APICheckout
+type RESTPostCreateNewCheckoutData APIResponse[APICheckout]
 
 // https://api.abacatepay.com/v2/transparents/create
 type RESTPostCreateQRCodePixBody struct {
@@ -142,7 +142,7 @@ type RESTPostCreateQRCodePixBody struct {
 }
 
 // https://api.abacatepay.com/v2/transparents/create
-type RESTPostCreateQRCodePixData APIQRCodePIX
+type RESTPostCreateQRCodePixData APIResponse[APIQRCodePIX]
 
 // https://api.abacatepay.com/v2/transparents/simulate-payment
 type RESTPostSimulateQRCodePixPaymentQueryParams struct {
@@ -157,7 +157,7 @@ type RESTPostSimulateQRCodePixPaymentBody struct {
 }
 
 // https://api.abacatepay.com/v2/transparents/simulate-payment
-type RESTPostSimulateQRCodePixPaymentData APIQRCodePIX
+type RESTPostSimulateQRCodePixPaymentData APIResponse[APIQRCodePIX]
 
 // https://api.abacatepay.com/v2/pixQrCode/check
 type RESTGetCheckQRCodePixStatusQueryParams struct {
@@ -166,19 +166,19 @@ type RESTGetCheckQRCodePixStatusQueryParams struct {
 }
 
 // https://api.abacatepay.com/v2/transparents/check
-type RESTGetCheckQRCodePixStatusData struct {
+type RESTGetCheckQRCodePixStatusData APIResponse[struct {
 	//QRCode Pix expiration date.
 	ExpiresAt time.Time `json:"expiresAt"`
 
 	// Information about the progress of QRCode Pix.
 	Status PaymentStatus `json:"status"`
-}
+}]
 
 // https://api.abacatepay.com/v2/checkouts/list
-type RESTGetListCheckoutsData []APICheckout
+type RESTGetListCheckoutsData APIResponse[[]APICheckout]
 
 // https://api.abacatepay.com/v2/checkouts/get
-type RESTGetCheckoutData APICheckout
+type RESTGetCheckoutData APIResponse[APICheckout]
 
 // https://api.abacatepay.com/v2/checkouts/get
 type RESTGetCheckoutQueryParams struct {
@@ -187,7 +187,7 @@ type RESTGetCheckoutQueryParams struct {
 }
 
 // https://api.abacatepay.com/v2/customers/list
-type RESTGetListCustomersData []APICustomer
+type RESTGetListCustomersData APIResponseWithPagination[[]APICustomer]
 
 // https://api.abacatepay.com/v2/customers/list
 type RESTGetListCustomersQueryParams struct {
@@ -205,7 +205,7 @@ type RESTGetCustomerQueryParams struct {
 }
 
 // https://api.abacatepay.com/v2/customers/get
-type RESTGetCustomerData struct {
+type RESTGetCustomerData APIResponse[struct {
 	// Unique customer identifier.
 	ID string `json:"id"`
 
@@ -226,7 +226,7 @@ type RESTGetCustomerData struct {
 
 	// Additional customer metadata.
 	Metadata map[string]any `json:"metadata,omitempty"`
-}
+}]
 
 // https://api.abacatepay.com/v2/customers/delete
 type RESTDeleteCustomerBody struct {
@@ -235,7 +235,7 @@ type RESTDeleteCustomerBody struct {
 }
 
 // https://api.abacatepay.com/v2/customers/delete
-type RESTDeleteCustomerData struct {
+type RESTDeleteCustomerData APIResponse[struct {
 	// Unique customer identifier.
 	ID string `json:"id"`
 
@@ -256,7 +256,7 @@ type RESTDeleteCustomerData struct {
 
 	// Additional customer metadata.
 	Metadata map[string]any `json:"metadata,omitempty"`
-}
+}]
 
 // https://api.abacatepay.com/v2/coupons/create
 type RESTPostCreateCouponBody struct {
@@ -280,7 +280,7 @@ type RESTPostCreateCouponBody struct {
 }
 
 // https://api.abacatepay.com/v2/coupon/create
-type RESTPostCreateCouponData APICoupon
+type RESTPostCreateCouponData APIResponse[APICoupon]
 
 // https://api.abacatepay.com/v2/payouts/create
 type RESTPostCreateNewPayoutBody struct {
@@ -295,7 +295,7 @@ type RESTPostCreateNewPayoutBody struct {
 }
 
 // https://api.abacatepay.com/v2/payouts/create
-type RESTPostCreateNewWPayoutData APIPayout
+type RESTPostCreateNewPayoutData APIResponse[APIPayout]
 
 // https://api.abacatepay.com/v2/payouts/get
 type RESTGetSearchPayoutQueryParams struct {
@@ -304,7 +304,7 @@ type RESTGetSearchPayoutQueryParams struct {
 }
 
 // https://api.abacatepay.com/v2/payouts/get
-type RESTGetSearchPayoutData APIPayout
+type RESTGetSearchPayoutData APIResponse[APIPayout]
 
 // https://api.abacatepay.com/v2/payouts/list
 type RESTGetListPayoutsQueryParams struct {
@@ -325,7 +325,7 @@ type RESTGetRevenueByPeriodQueryParams struct {
 }
 
 // https://api.abacatepay.com/v2/public-mrr/revenue
-type RESTGetRevenueByPeriodData struct {
+type RESTGetRevenueByPeriodData APIResponse[struct {
 	// Total revenue for the period in cents.
 	TotalRevenue uint64 `json:"totalRevenue"`
 
@@ -340,10 +340,10 @@ type RESTGetRevenueByPeriodData struct {
 		// Number of transactions for the day.
 		Count uint64 `json:"count"`
 	} `json:"transactionsPerDay"`
-}
+}]
 
 // https://api.abacatepay.com/v2/public-mrr/merchant-info
-type RESTGetMerchantData struct {
+type RESTGetMerchantData APIResponse[struct {
 	// Store name.
 	Name string `json:"name"`
 
@@ -352,25 +352,25 @@ type RESTGetMerchantData struct {
 
 	// Store creation date.
 	CreatedAt string `json:"createdAt"`
-}
+}]
 
 // https://api.abacatepay.com/v2/public-mrr/mrr
-type RESTGetMRRData struct {
+type RESTGetMRRData APIResponse[struct {
 	// Monthly recurring revenue in cents. Value 0 indicates that there is no recurring revenue at the moment.
 	MRR uint64 `json:"mrr"`
 
 	// Total active subscriptions. Value 0 indicates that there are no currently active subscriptions.
 	TotalActiveSubscriptions uint64 `json:"totalActiveSubscriptions"`
-}
+}]
 
 // https://api.abacatepay.com/v2/store/get
-type RESTGetStoreDetailsData APIStore
+type RESTGetStoreDetailsData APIResponse[APIStore]
 
 // https://api.abacatepay.com/v2/payouts/list
-type RESTGetListPayoutsData []APIPayout
+type RESTGetListPayoutsData APIResponseWithPagination[[]APIPayout]
 
 // https://api.abacatepay.com/v2/coupons/list
-type RESTGetListCouponsData []APICoupon
+type RESTGetListCouponsData APIResponseWithPagination[[]APICoupon]
 
 // https://api.abacatepay.com/v2/coupons/list
 type RESTGetListCouponsQueryParams struct {
@@ -388,7 +388,7 @@ type RESTGetCouponQueryParams struct {
 }
 
 // https://api.abacatepay.com/v2/coupons/get
-type RESTGetCouponData APICoupon
+type RESTGetCouponData APIResponse[APICoupon]
 
 // https://api.abacatepay.com/v2/coupons/delete
 type RESTDeleteCouponBody struct {
@@ -397,7 +397,7 @@ type RESTDeleteCouponBody struct {
 }
 
 // https://api.abacatepay.com/v2/coupons/delete
-type RESTDeleteCouponData APICoupon
+type RESTDeleteCouponData APIResponse[APICoupon]
 
 // https://api.abacatepay.com/v2/coupons/toggle
 type RESTPatchToggleCouponStatusBody struct {
@@ -406,7 +406,7 @@ type RESTPatchToggleCouponStatusBody struct {
 }
 
 // https://api.abacatepay.com/v2/coupons/toggle
-type RESTPatchToggleCouponStatusData APICoupon
+type RESTPatchToggleCouponStatusData APIResponse[APICoupon]
 
 // https://api.abacatepay.com/v2/products/create
 type RESTPostCreateProductBody struct {
@@ -427,7 +427,7 @@ type RESTPostCreateProductBody struct {
 }
 
 // https://api.abacatepay.com/v2/products/create
-type RESTPostCreateProductData APIProduct
+type RESTPostCreateProductData APIResponse[APIProduct]
 
 // https://api.abacatepay.com/v2/products/list
 type RESTGetListProductsQueryParams struct {
@@ -439,7 +439,7 @@ type RESTGetListProductsQueryParams struct {
 }
 
 // https://api.abacatepay.com/v2/products/list
-type RESTGetListProductsData []APIProduct
+type RESTGetListProductsData APIResponseWithPagination[[]APIProduct]
 
 // https://api.abacatepay.com/v2/products/get
 type RESTGetProductQueryParams struct {
@@ -451,7 +451,7 @@ type RESTGetProductQueryParams struct {
 }
 
 // https://api.abacatepay.com/v2/products/get
-type RESTGetProductData APIProduct
+type RESTGetProductData APIResponse[APIProduct]
 
 // https://api.abacatepay.com/v2/subscriptions/create
 type RESTPostCreateSubscriptionBody struct {
@@ -484,7 +484,7 @@ type RESTPostCreateSubscriptionBody struct {
 }
 
 // https://api.abacatepay.com/v2/subscriptions/create
-type RESTPostCreateSubscriptionData APISubscription
+type RESTPostCreateSubscriptionData APIResponse[APISubscription]
 
 // https://api.abacatepay.com/v2/subscriptions/list
 type RESTGetListSubscriptionsQueryParams struct {
@@ -496,4 +496,4 @@ type RESTGetListSubscriptionsQueryParams struct {
 }
 
 // https://api.abacatepay.com/v2/subscriptions/list
-type RESTGetListSubscriptionsData []APISubscription
+type RESTGetListSubscriptionsData APIResponseWithCursorBasedPagination[[]APISubscription]
