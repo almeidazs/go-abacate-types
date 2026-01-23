@@ -208,6 +208,8 @@ type RESTGetSearchWithdrawQueryParams struct {
 	ExternalID string `json:"externalId"`
 }
 
+type RESTGetSearchWithdrawData = APIResponse[APIWithdraw]
+
 // https://api.abacatepay.com/v1/withdraw/list
 type RESTGetListWithdrawsData = APIResponse[[]APIWithdraw]
 
