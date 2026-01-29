@@ -2,15 +2,23 @@ package v1
 
 // https://docs.abacatepay.com/pages/trustMRR/reference#estrutura
 type APIMerchantInfo struct {
-	Name      string  `json:"name"`
-	Website   *string `json:"website"`
-	CreatedAt string  `json:"createdAt"`
+	// Store name.
+	Name string `json:"name"`
+
+	// Store website.
+	Website string `json:"website"`
+
+	// Store creation date.
+	CreatedAt string `json:"createdAt"`
 }
 
 // https://docs.abacatepay.com/pages/trustMRR/reference#mrr-monthly-recurring-revenue
 type APIMRRInfo struct {
-	MRR                      uint64 `json:"mrr"`
-	TotalActiveSubscriptions uint64 `json:"totalActiveSubscriptions"`
+	// Monthly recurring revenue in cents. Value 0 indicates that there is no recurring revenue at the moment.
+	MRR int `json:"mrr"`
+
+	// Total active subscriptions. Value 0 indicates that there are no currently active subscriptions.
+	TotalActiveSubscriptions int `json:"totalActiveSubscriptions"`
 }
 
 // https://docs.abacatepay.com/pages/trustMRR/reference#receita-por-per%C3%ADodo

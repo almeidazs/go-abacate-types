@@ -222,30 +222,14 @@ type RESTGetRevenueByPeriodQueryParams struct {
 	EndDate string `json:"endDate"`
 }
 
+// https://api.abacatepay.com/v1/public-mrr/revenue
+type RESTGetRevenueByPeriodData = APIResponse[APIRevenueByPeriod]
+
 // https://api.abacatepay.com/v1/public-mrr/merchant-info
-type RESTGetMerchantData = APIResponse[RESTMerchantInfo]
-
-type RESTMerchantInfo struct {
-	// Store name.
-	Name string `json:"name"`
-
-	// Store website.
-	Website string `json:"website"`
-
-	// Store creation date.
-	CreatedAt string `json:"createdAt"`
-}
+type RESTGetMerchantData = APIResponse[APIMerchantInfo]
 
 // https://api.abacatepay.com/v1/public-mrr/mrr
-type RESTGetMRRData = APIResponse[RESTMRRInfo]
-
-type RESTMRRInfo struct {
-	// Monthly recurring revenue in cents. Value 0 indicates that there is no recurring revenue at the moment.
-	MRR int `json:"mrr"`
-
-	// Total active subscriptions. Value 0 indicates that there are no currently active subscriptions.
-	TotalActiveSubscriptions int `json:"totalActiveSubscriptions"`
-}
+type RESTGetMRRData = APIResponse[APIMRRInfo]
 
 // https://api.abacatepay.com/v1/store/get
 type RESTGetStoreDetailsData = APIResponse[APIStore]
