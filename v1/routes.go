@@ -62,3 +62,12 @@ const (
 	RouteGetMerchant = "/public-mrr/merchant-info"
 	RouteGetRevenue  = "/public-mrr/revenue"
 )
+
+func BuildGetRevenueByPeriod(start, end string) string {
+	query := url.Values{}
+
+	query.Set("startDate", start)
+	query.Set("endDate", end)
+
+	return RouteGetRevenue + "?" + query.Encode()
+}
